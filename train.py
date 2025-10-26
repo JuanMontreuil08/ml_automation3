@@ -48,7 +48,7 @@ def train_and_eval():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
 
     # === 6. Entrenamiento del modelo ===
-    clf = XGBClassifier(objective="binary:logistic", n_estimators=50, seed=123, use_label_encoder=False, eval_metric="logloss")
+    clf = XGBClassifier(objective="binary:logistic", n_estimators=50, seed=123, eval_metric="logloss")
     clf.fit(X_train, y_train)
 
     # === 7. Evaluación ===
@@ -58,15 +58,13 @@ def train_and_eval():
     metrics = {
         "precision": float(precision_score(y_test, y_pred)),
         "recall": float(recall_score(y_test, y_pred)),
-        "roc_auc": float(roc_auc_score(y_test, y_pred_proba)),
-        "classes": list(encoder.classes_)
+        "roc_auc": float(roc_auc_score(y_test, y_pred_proba))
     }
 
     # === 8. Guardar modelo y vectorizador ===
     bundle = {
         "model": clf,
         "vectorizer": tfidf,
-        "label_encoder": encoder,
         "target_names": list(encoder.classes_)
     }
     save_model_bundle(bundle)
