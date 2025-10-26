@@ -5,3 +5,5 @@ numpy
 joblib
 pytest
 ruff
+nltk
+xgboost
