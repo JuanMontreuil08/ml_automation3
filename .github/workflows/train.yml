@@ -26,5 +26,5 @@ jobs:
       - name: Commit model artifact
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(model): update model-latest.pkl"
-          file_pattern: models/model-latest.pkl
+          commit_message: "chore(model): update model-xgb.pkl"
+          file_pattern: models/xgb_model.pkl
