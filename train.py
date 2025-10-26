@@ -10,11 +10,6 @@ from sklearn.metrics import precision_score, recall_score, roc_auc_score
 from xgboost import XGBClassifier
 from model_utils import save_model_bundle  # igual que en tu archivo original
 
-
-# Asegúrate de tener descargados estos recursos de NLTK:
-nltk.download('punkt')
-nltk.download('stopwords')
-
 def transform_text(text):
     ps = PorterStemmer()
     # lowercase
