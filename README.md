@@ -36,3 +36,23 @@ MLOps stands for Machine Learning Operations and refers to a set of best practic
 - **📈 Retraining Pipeline (`train.yml`)**  
   Runs automatically every day at 8:00 AM (UTC) or on manual trigger. It installs dependencies, retrains the XGBoost model using `train.py`, and commits the updated model artifact (`models/artifacts.pkl`) back to the repository.
 
+## Project Structure
+```
+spam-mlops/
+│
+├── README.md
+└── data/
+    └── spam.csv
+└── models/ # Model versioning
+    └── artifacts.pkl
+    └── xgb_model.pkl
+└── tests/
+    └── test_train.py # Stored function to execute the model evaluation
+└── app.py # Hugging Face UI
+...
+...
+└── .github/workflows # GitHub actions
+    └── ci.yml
+    └── deploy.yml
+    └── train.yml
+```
