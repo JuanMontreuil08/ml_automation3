@@ -4,7 +4,7 @@ from pathlib import Path
 
 # --- Directorio del modelo ---
 MODELS_DIR = Path(__file__).parent / "models"
-BUNDLE_PATH = MODELS_DIR / "xgb_model.pkl"
+BUNDLE_PATH = MODELS_DIR / "artifacts.pkl"
 
 def load_model_bundle():
     if not BUNDLE_PATH.exists():
