@@ -29,7 +29,7 @@ jobs:
       - name: Push to Space repo (safe rsync)
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_SPACE_ID: ${{ secrets.HF_SPACE_ID }}
+          HF_SPACE_ID: JuanMontreuil/Spamner
         run: |
           set -euo pipefail
       
