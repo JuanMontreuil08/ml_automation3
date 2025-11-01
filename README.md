@@ -9,4 +9,5 @@ app_file: app.py     # <-- tu archivo con Gradio (está en la raíz)
 pinned: false
 ---
 
-App de demo CI/CT/CD. El modelo aprobado se carga desde `models/model-latest.pkl`
+# SMS Spam Classifier using MLOps
+
