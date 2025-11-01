@@ -3,24 +3,31 @@ import numpy as np
 from model_utils import load_model_bundle
 
 bundle = load_model_bundle()
-MODEL = bundle["model"]
-TARGET_NAMES = bundle.get("target_names", ["setosa", "versicolor", "virginica"])
+MODEL = bundle
+TARGET_NAMES = ["no spam", "spam"]  # etiquetas de salida
 
-def predict(sepal_length, sepal_width, petal_length, petal_width):
-    X = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
-    y = MODEL.predict(X)[0]
-    return TARGET_NAMES[int(y)]
+# --- Función de predicción ---
+def predict(email_text):
+    """
+    Recibe el texto de un email y devuelve 'spam' o 'no spam'.
+    """
+    # En tu pipeline, el modelo debe poder recibir texto directamente.
+    # Si usas un vectorizer (CountVectorizer, TfidfVectorizer, etc.), 
+    # asegúrate de haberlo guardado y cargarlo también.
+    if hasattr(MODEL, "predict"):
+        X = [email_text]
+        y = MODEL.predict(X)[0]
+        return TARGET_NAMES[int(y)]
+    else:
+        return "Error: el modelo no tiene método 'predict'."
 
+# --- Interfaz Gradio ---
 demo = gr.Interface(
     fn=predict,
-    inputs=[
-        gr.Number(label="sepal_length"),
-        gr.Number(label="sepal_width"),
-        gr.Number(label="petal_length"),
-        gr.Number(label="petal_width"),
-    ],
-    outputs=gr.Text(label="prediction"),
-    title="ML CI/CT/CD Quickstart (Iris)",
+    inputs=gr.Textbox(label="Escribe el email", lines=8, placeholder="Pega aquí el contenido del correo..."),
+    outputs=gr.Textbox(label="Predicción"),
+    title="Clasificador de Spam con XGBoost",
+    description="Introduce el texto de un correo electrónico y el modelo predecirá si es spam o no.",
     allow_flagging="never",
 )
 
