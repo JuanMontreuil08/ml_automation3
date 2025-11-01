@@ -32,7 +32,7 @@ def train_and_eval():
     df = df.rename(columns={"v1": "Categoria", "v2": "SMS"})
     df = df.drop_duplicates()
 
-    # === 2. Codificar etiquetas ===
+    # === 2. Codificar etiquetas ==
     encoder = LabelEncoder()
     df["Categoria"] = encoder.fit_transform(df["Categoria"])
 
