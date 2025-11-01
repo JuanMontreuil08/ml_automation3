@@ -29,10 +29,10 @@ def predict(email_text):
 # --- Interfaz Gradio ---
 demo = gr.Interface(
     fn=predict,
-    inputs=gr.Textbox(label="Escribe el email", lines=8, placeholder="Pega aquí el contenido del correo..."),
+    inputs=gr.Textbox(label="Escribe el SMS", lines=8, placeholder="Pega aquí el contenido del sms..."),
     outputs=gr.Textbox(label="Predicción"),
     title="Clasificador de Spam con XGBoost",
-    description="Introduce el texto de un correo electrónico y el modelo predecirá si es spam o no.",
+    description="Introduce el texto de un SMS y el modelo predecirá si es spam o no.",
     allow_flagging="never",
 )
 
