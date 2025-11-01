@@ -12,7 +12,7 @@ def load_model_bundle():
     return joblib.load(BUNDLE_PATH)
 
 # --- Cargar bundle ---
-bundle = joblib.load(BUNDLE_PATH)  # esto es un dict
+bundle = load_model_bundle()  # esto es un dict
 MODEL = bundle["model"]
 VECTORIZER = bundle["vectorizer"]
 TARGET_NAMES = bundle.get("target_names", ["no spam", "spam"])
