@@ -13,3 +13,5 @@ def load_model_bundle():
     if not BUNDLE_PATH.exists():
         raise FileNotFoundError("models/xgb_model.pkl not found. Run CT (train.yml) first.")
     return joblib.load(BUNDLE_PATH)
+
+MODEL = load_model_bundle()
