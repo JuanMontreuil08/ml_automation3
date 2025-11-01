@@ -51,7 +51,7 @@ def train_and_eval():
     clf = XGBClassifier(objective="binary:logistic", n_estimators=50, seed=123, eval_metric="logloss")
     clf.fit(X_train, y_train)
 
-    # === 7. Evaluación ===
+    # === 7. Evaluación ==
     y_pred = clf.predict(X_test)
     y_pred_proba = clf.predict_proba(X_test)[:, 1]
 
