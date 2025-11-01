@@ -56,3 +56,11 @@ spam-mlops/
     └── deploy.yml
     └── train.yml
 ```
+
+## 👨‍💻 Author
+**Juan Montreuil**  
+Data & AI Enthusiast
+
+- Portfolio: [https://www.juanmontreuil.com/](https://www.juanmontreuil.com/)  
+- LinkedIn: [https://www.linkedin.com/in/juan-montreuil-6b65ba163/](https://www.linkedin.com/in/juan-montreuil-6b65ba163/)
+
