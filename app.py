@@ -1,25 +1,30 @@
 import gradio as gr
-import numpy as np
-from model_utils import load_model_bundle
+import joblib
+from pathlib import Path
 
+# --- Directorio del modelo ---
+MODELS_DIR = Path(__file__).parent / "models"
+BUNDLE_PATH = MODELS_DIR / "xgb_model.pkl"
+
+def load_model_bundle():
+    if not BUNDLE_PATH.exists():
+        raise FileNotFoundError("models/xgb_model.pkl no encontrado. Entrena el modelo primero.")
+    return joblib.load(BUNDLE_PATH)
+
+# --- Cargar bundle ---
 bundle = load_model_bundle()
-MODEL = bundle
-TARGET_NAMES = ["no spam", "spam"]  # etiquetas de salida
+MODEL = bundle["model"]
+VECTORIZER = bundle["vectorizer"]
+TARGET_NAMES = bundle.get("target_names", ["no spam", "spam"])
 
 # --- Función de predicción ---
 def predict(email_text):
     """
     Recibe el texto de un email y devuelve 'spam' o 'no spam'.
     """
-    # En tu pipeline, el modelo debe poder recibir texto directamente.
-    # Si usas un vectorizer (CountVectorizer, TfidfVectorizer, etc.), 
-    # asegúrate de haberlo guardado y cargarlo también.
-    if hasattr(MODEL, "predict"):
-        X = [email_text]
-        y = MODEL.predict(X)[0]
-        return TARGET_NAMES[int(y)]
-    else:
-        return "Error: el modelo no tiene método 'predict'."
+    X = VECTORIZER.transform([email_text])  # convierte texto a features numéricas
+    y = MODEL.predict(X)[0]
+    return TARGET_NAMES[int(y)]
 
 # --- Interfaz Gradio ---
 demo = gr.Interface(
@@ -33,3 +38,4 @@ demo = gr.Interface(
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=7860)
+
